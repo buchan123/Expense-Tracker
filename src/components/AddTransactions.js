@@ -5,6 +5,7 @@ import { GlobalContext } from "../context/GlobalState";
 export const AddTransactions = () => {
   const [text, setText] = useState("");
   const [amount, setAmount] = useState(0);
+  const [type, setType] = useState("Income");
 
   const { addTransaction } = useContext(GlobalContext);
   const onSubmit = (e) => {
@@ -13,12 +14,13 @@ export const AddTransactions = () => {
     const newTransaction = {
       id: Math.floor(Math.random() * 100000000),
       text,
-      amount: +amount,
+      amount: type === "Income" ? +amount : -amount,
     };
 
     addTransaction(newTransaction);
     setText("");
     setAmount(0);
+    setType("Income");
   };
 
   return (
@@ -26,19 +28,18 @@ export const AddTransactions = () => {
       <h3>Add new transaction</h3>
       <form id="form" onSubmit={onSubmit}>
         <div className="form-control">
-          <label htmlFor="text">Text</label>
+          <label htmlFor="text">Name</label>
           <input
             type="text"
             id="text"
             value={text}
             onChange={(e) => setText(e.target.value)}
-            placeholder="Enter text..."
+            placeholder="Enter Name..."
           />
         </div>
         <div className="form-control">
           <label htmlFor="amount">
             Amount <br />
-            (-ve : Expense, +ve : Income)
           </label>
           <input
             type="number"
@@ -47,6 +48,23 @@ export const AddTransactions = () => {
             onChange={(e) => setAmount(e.target.value)}
             placeholder="Enter amount..."
           />
+        </div>
+        <div className="form-control">
+          <input
+            type="radio"
+            id="income"
+            name="income-expense"
+            onChange={(e) => setType("Income")}
+            checked
+          ></input>
+          <label htmlFor="incomes">Income</label>
+          <input
+            type="radio"
+            id="expense"
+            name="income-expense"
+            onChange={(e) => setType("Expense")}
+          ></input>
+          <label htmlFor="expense">Expense</label>
         </div>
         <button className="btn">Add transaction</button>
       </form>
