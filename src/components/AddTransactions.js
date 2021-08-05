@@ -55,14 +55,15 @@ export const AddTransactions = () => {
             id="income"
             name="income-expense"
             onChange={(e) => setType("Income")}
-            checked
+            checked={type === "Income" ? true : false}
           ></input>
-          <label htmlFor="incomes">Income</label>
+          <label htmlFor="income">Income</label>
           <input
             type="radio"
             id="expense"
             name="income-expense"
             onChange={(e) => setType("Expense")}
+            checked={type === "Expense" ? true : false}
           ></input>
           <label htmlFor="expense">Expense</label>
         </div>
