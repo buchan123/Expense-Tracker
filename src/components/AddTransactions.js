@@ -11,7 +11,7 @@ export const AddTransactions = () => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    if (text !== "" && amount !== 0) {
+    if (text !== "" && +amount !== 0) {
       const newTransaction = {
         id: Math.floor(Math.random() * 100000000),
         text,
