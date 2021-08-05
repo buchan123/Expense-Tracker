@@ -5,8 +5,8 @@ import { GlobalContext } from "../context/GlobalState";
 export const AddTransactions = () => {
   const [text, setText] = useState("");
   const [amount, setAmount] = useState(0);
-  const { addTransaction } = useContext(GlobalContext);
 
+  const { addTransaction } = useContext(GlobalContext);
   const onSubmit = (e) => {
     e.preventDefault();
 
@@ -17,6 +17,8 @@ export const AddTransactions = () => {
     };
 
     addTransaction(newTransaction);
+    setText("");
+    setAmount(0);
   };
 
   return (
