@@ -11,16 +11,18 @@ export const AddTransactions = () => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    const newTransaction = {
-      id: Math.floor(Math.random() * 100000000),
-      text,
-      amount: type === "Income" ? +amount : -amount,
-    };
+    if (text !== "" && amount !== 0) {
+      const newTransaction = {
+        id: Math.floor(Math.random() * 100000000),
+        text,
+        amount: type === "Income" ? +amount : -amount,
+      };
 
-    addTransaction(newTransaction);
-    setText("");
-    setAmount(0);
-    setType("Income");
+      addTransaction(newTransaction);
+      setText("");
+      setAmount(0);
+      setType("Income");
+    }
   };
 
   return (
